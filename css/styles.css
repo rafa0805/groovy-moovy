@@ -1,0 +1,296 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* --------共通--------- */
+header {
+  position: relative;
+  height: 64px;
+  background-color: #000;
+  font-size: 32px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-align: center;
+  line-height: 64px;
+}
+header img {
+  vertical-align: -8px;
+  width: 48px;
+  height: auto;
+}
+header div {
+  position: absolute;
+  left: 20px;
+  display: inline;
+  font-size: 16px;
+}
+
+.btn {
+  cursor: pointer;
+  user-select: none;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* --------マイページ--------- */
+#container {
+  display: flex;
+  height: 100%;
+  background-color: #28385E;
+}
+
+#side_bar {
+  width: 64px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 1px 0 1px 0 #ccc;
+}
+
+#side_bar img {
+  display: block;
+  margin: 0 auto;
+  width: 35px;
+  height: auto;
+  background-color: #eee;
+}
+
+#side_bar .dummybtn {
+  display: flex;
+  align-items: center;
+  margin: 12px auto 0;
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+#side_bar button {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+#side_bar button:focus {
+  outline: 0;
+}
+
+/*---- ①To do listセクション---- */
+#list_container {
+  overflow-y: scroll;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px;
+  width: 45%;
+}
+#list_container::-webkit-scrollbar {
+  display: none;
+}
+#list_container .todo_list {
+  list-style: none;
+  padding: 20px;
+  width: 250px;
+  height: 280px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+#list_container .todo_list p {
+  margin: 0 0 8px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+#list_container .todo_list .pad_del img {
+  width: 20px;
+  height: auto;
+}
+#list_container .todo_list span {
+  margin-left: 8px;
+  font-size: 16px;
+}
+#list_container .todo_list input:checked {
+  background-color: #aaa;
+}
+#list_container .todo_list span.checked {
+  text-decoration: line-through;
+  color: #aaa;
+}
+#list_container .todo_list li {
+  margin: 0 0 8px;
+  border-bottom: 1px dashed #ccc;
+}
+#list_container .todo_list li:last-of-type {
+  margin: 0 0 8px;
+  border-bottom: 0;
+}
+#list_container .todo_list input[type='text'] {
+  padding: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#list_container .todo_list input[type='text']:focus {
+  outline: 0;
+  color: #28385E;
+  border: 2px solid #28385E;
+}
+#list_container .todo_list button {
+  float: right;
+  padding: 4px;
+  border-radius: 4px;
+}
+#list_container .todo_list .del {
+  display: inline-block;
+  float: right;
+}
+#list_container .template {
+  display: none;
+}
+
+
+
+/*---- ②SNSタイムライン listセクション---- */
+#timeline_container {
+  overflow-y: scroll;
+  padding: 40px;
+  flex: 1;
+}
+#timeline_container::-webkit-scrollbar {
+  display: none;
+}
+#mask.fade {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #333;
+  opacity: 0.7;
+}
+
+#highlights > ul {
+  margin: 8px auto 0;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style: none;
+  border-radius: 4px;
+  background-color: #eee;
+}
+#highlights > ul img {
+  margin: 0 4px 4px 0;
+  width: auto;
+  height: 160px;
+}
+#highlights > p {
+  margin: 0;
+  font-size: 20px;
+  color: #FFD100;
+  font-weight: bold;
+}
+
+#abstract {
+  position: absolute;
+  top: calc(50% - 170px);
+  right: -520px;
+  display: flex;
+  padding: 20px;
+  width: 480px;
+  height: 300px;
+  border-radius: 8px;
+  background-color: #F0E68C;
+}
+#abstract.show {
+  right: 40px;
+}
+
+#abstract .img_container{
+  margin: 0 16px 0 0;
+}
+#abstract .close img {
+  width: 32px;
+  height: auto;
+}
+#abstract .info_container{
+  overflow-y: scroll;
+  margin: 0 16px 0 0;
+  width: 312px;
+  height: 300px;
+  overflow-wrap: break-word;
+}
+#abstract .info_container::-webkit-scrollbar {
+  display: none;
+}
+#abstract .info_container .title{
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#abstract .info_container .release{
+  margin: 0 0 12px;
+  text-align: right;
+}
+
+
+
+/* --------ログインページ--------- */
+#form_container {
+  margin: 40px auto 0;
+  padding: 40px;
+  width: 400px;
+  border-radius: 4px;
+  background-color: #28385E;
+  text-align: center;
+}
+
+#form_container p {
+  margin: 0;
+  font-size: 16px;
+  color: #FFD100;
+  font-weight: bold;
+}
+#form_container a {
+  font-size: 12px;
+  color: #FFD100;
+}
+
+
+#form_container input {
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 184px;
+  border: 0;
+  border-radius: 4px;
+}
+
+#form_container .btn {
+  display: block;
+  margin: 12px auto 0;
+  padding: 8px;
+  width: 200px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #ffd7a2;
+  box-shadow: 0 3px 0 0 #ffac4d;
+  font-weight: bold;
+}
+#form_container .demo {
+  background-color: #B0D7D5;
+  box-shadow: 0 3px 0 0 #4790BB;
+}
+#form_container .error{
+  color: #FA776D;
+
+}
