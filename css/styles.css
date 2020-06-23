@@ -69,7 +69,7 @@ header div {
   height: 50px;
   background-color: #eee;
   border: 1px solid #000;
-  border-radius: 50%;
+  border-radius: 25px;
 }
 
 #side_bar button {
@@ -81,6 +81,24 @@ header div {
 }
 #side_bar button:focus {
   outline: 0;
+}
+#new_pad.active {
+  position: relative;
+  padding: 0 0 0 32px;
+  width: 300px;
+  border: 2px solid #2776f4;
+  opacity: 1;
+  z-index: 100;
+  transition: 200ms;
+}
+#new_pad input {
+  display: none;
+  padding: 8px;
+  width: 200px;
+  border-radius: 4px;
+}
+#new_pad.active input {
+  display: inline-block;
 }
 
 /*---- ①To do listセクション---- */
@@ -169,7 +187,8 @@ header div {
 #timeline_container::-webkit-scrollbar {
   display: none;
 }
-#mask.fade {
+#mask {
+  display: none;
   position: absolute;
   top: 64px;
   left: 0;
@@ -177,6 +196,9 @@ header div {
   width: 100%;
   background-color: #333;
   opacity: 0.7;
+}
+#mask.fade {
+  display: block;
 }
 
 #highlights > ul {
@@ -208,7 +230,7 @@ header div {
   display: flex;
   padding: 20px;
   width: 480px;
-  height: 300px;
+  height: 328px;
   border-radius: 8px;
   background-color: #F0E68C;
 }
@@ -217,11 +239,29 @@ header div {
 }
 
 #abstract .img_container{
+  position: relative;
   margin: 0 16px 0 0;
 }
-#abstract .close img {
+#abstract .close img{
   width: 32px;
   height: auto;
+}
+#abstract .add_to_list img{
+  margin-top: 12px;
+  width: 32px;
+  height: auto;
+}
+#abstract .img_container p{
+  position: absolute;
+  bottom: 36px;
+  left: 50px;
+  margin: 0;
+}
+#abstract .img_container select{
+  position: absolute;
+  bottom: 8px;
+  left: 50px;
+  padding: 2px;
 }
 #abstract .info_container{
   overflow-y: scroll;

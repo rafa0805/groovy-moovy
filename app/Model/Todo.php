@@ -39,7 +39,7 @@ class Todo extends \MyApp\Model
     $sql = 'insert into pads (title, user_id, created_at, updated_at) values (:title, :user_id, now(), now());';
     $stmt = $this->db->prepare($sql);
     $stmt->execute([
-      'title' => 'New Pad',
+      'title' => $_POST['title'],
       'user_id' => $_POST['user_id']
     ]);
 

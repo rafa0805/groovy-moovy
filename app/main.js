@@ -2,18 +2,46 @@
 $(function() {
 
   $('#new_pad').on('click', function() {
-    let user_id = $('#user').data('id');
+     $(this).addClass('active');
+     $(this).children('input').addClass('active');
+     $('#mask').addClass('fade');
+  });
 
-    $.post('./app/ajax.php', {
-      user_id: user_id,
-      mode: 'create_pad',
-      token: $('#token').val()
-    }).done(function(res) {
-      let $ul = $('ul.template').clone();
-      $ul.removeClass('template').addClass('todo_list').attr('data-id', res.id);
-      $ul.children('p').text(res.title);
-      $ul.appendTo('#list_container').hide().fadeIn(200);
-    });
+  $('#mask').on('click', function() {
+    if ($('#new_pad').hasClass('active')) {
+      $('#new_pad').removeClass('active');
+    }
+    if ($('#abstract').hasClass('show')) {
+      $('#abstract').removeClass('show');
+    }
+    $('#mask').removeClass('fade');
+  });
+
+  $('#new_pad').on('click', function() {
+    if ($(this).children('input').val() !== "") {
+      let user_id = $('#user').data('id');
+      let title = $(this).children('input').val();
+      $('#new_pad').removeClass('active');
+      $('#mask').removeClass('fade');
+      $(this).children('input').val('');
+
+      $.post('./app/ajax.php', {
+        user_id: user_id,
+        title: title,
+        mode: 'create_pad',
+        token: $('#token').val()
+      }).done(function(res) {
+        let $ul = $('ul.template').clone();
+
+        $ul.removeClass('template').addClass('todo_list').attr('data-id', res.id);
+        $ul.children('p').text(res.title);
+        $ul.appendTo('#list_container').hide().fadeIn(200);
+      });
+    } else {
+      console.log('Heloooo');
+      return;
+    };
+    
   });
 
   $('#list_container').on('click', '.pad_del', function() {
@@ -98,6 +126,27 @@ $(function() {
     $('#abstract').find('.release').text('');
     $('#abstract').find('.overview').text('');
     $('#abstract').removeClass('show');
+  });
+
+  $('#abstract').on('click', '.add_to_list', function() {
+
+    let pad_id = $('#abstract').find('.img_container').children('select').val();
+    let content = $('#abstract').find('.title').text();
+    
+    $.post('./app/ajax.php', {
+      pad_id: pad_id,
+      content: content,
+      mode: 'create_todo',
+      token: $('#token').val()
+    }).done(function(res) {
+      let $li = $('li.template').clone();
+      $li.removeClass('template').attr('data-id', res.id);
+      $li.children('span').text(res.content);
+      $('#list_container').find(`.todo_list[data-id=${pad_id}]`).children('li:last').prepend($li);
+    });
+
+
+
   });
 
 });
