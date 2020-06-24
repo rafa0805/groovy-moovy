@@ -4,7 +4,7 @@ $(function() {
   $('#new_pad').on('click', function() {
      $(this).addClass('active');
      $(this).children('input').addClass('active');
-     $('#mask').addClass('fade');
+     $('#mask').addClass('show');
   });
 
   $('#mask').on('click', function() {
@@ -14,7 +14,7 @@ $(function() {
     if ($('#abstract').hasClass('show')) {
       $('#abstract').removeClass('show');
     }
-    $('#mask').removeClass('fade');
+    $('#mask').removeClass('show');
   });
 
   $('#new_pad').on('click', function() {
@@ -22,7 +22,7 @@ $(function() {
       let user_id = $('#user').data('id');
       let title = $(this).children('input').val();
       $('#new_pad').removeClass('active');
-      $('#mask').removeClass('fade');
+      $('#mask').removeClass('show');
       $(this).children('input').val('');
 
       $.post('./app/ajax.php', {
@@ -72,7 +72,7 @@ $(function() {
       let $li = $('li.template').clone();
       $li.removeClass('template').attr('data-id', res.id);
       $li.children('span').text(res.content);
-      $ul.children('li:last').prepend($li);
+      $ul.children('li:last').before($li);
     });
   });
 
@@ -106,13 +106,13 @@ $(function() {
     });
   });
 
-  $('#timeline_container').on('click', '.poster', function() {
+  $('#movie_container').on('click', '.poster', function() {
     let url = $(this).attr('src');
     let title = $(this).attr('data-title');
     let release = $(this).attr('data-release');
     let overview = $(this).attr('data-overview');
 
-    $('#mask').addClass('fade');
+    $('#mask').addClass('show');
     $('#abstract').find('.thumbnail').attr('src',url);
     $('#abstract').find('.title').text(title);
     $('#abstract').find('.release').text(release);
@@ -120,8 +120,8 @@ $(function() {
     $('#abstract').addClass('show');
   });
 
-  $('#abstract').on('click', '.close', function() {
-    $('#mask').removeClass('fade');
+  $('#abstract').on('click', '.exit', function() {
+    $('#mask').removeClass('show');
     $('#abstract').find('.title').text('');
     $('#abstract').find('.release').text('');
     $('#abstract').find('.overview').text('');
@@ -130,7 +130,7 @@ $(function() {
 
   $('#abstract').on('click', '.add_to_list', function() {
 
-    let pad_id = $('#abstract').find('.img_container').children('select').val();
+    let pad_id = $('#abstract').find('select').val();
     let content = $('#abstract').find('.title').text();
     
     $.post('./app/ajax.php', {
@@ -144,11 +144,26 @@ $(function() {
       $li.children('span').text(res.content);
       $('#list_container').find(`.todo_list[data-id=${pad_id}]`).children('li:last').prepend($li);
     });
-
-
-
   });
 
+  $('#find-movie').on('click', function() {
+    if (!$('#movie_container').hasClass('show')) {
+      $('#movie_container').addClass('show');
+    } else {
+      $('#movie_container').removeClass('show');
+    }
+  });
+
+  $(window).on('resize', function() {
+    if ($(window).width() > 768) {
+      if ($('#movie_container').hasClass('show')) {
+        $('#movie_container').removeClass('show');
+      } else {
+        return;
+      }
+    }
+  });
+  
 });
 
 
