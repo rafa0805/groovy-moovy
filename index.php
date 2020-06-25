@@ -103,7 +103,7 @@ $weekly = $app->getMovies();
         <div class='exit btn'><img src='./img/exit.png'></div>
         <img class='thumbnail' src="">
         <div class='add_to_list_container'>
-          <div class='add_to_list btn'><img src='./img/add.png'></div>
+          <div class='add_to_list btn'><img src='./img/add.png'><p class='d-none'>Added!!</p></div>
           <div>
             <p>Select a To Watch List</p>
             <select>
