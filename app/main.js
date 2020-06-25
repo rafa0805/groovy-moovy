@@ -42,7 +42,6 @@ $(function() {
 
       });
     } else {
-      console.log('Heloooo');
       return;
     };
     
@@ -149,7 +148,7 @@ $(function() {
       let $li = $('li.template').clone();
       $li.removeClass('template').attr('data-id', res.id);
       $li.children('span').text(res.content);
-      $('#list_container').find(`.todo_list[data-id=${pad_id}]`).children('li:last').prepend($li);
+      $('#list_container').find(`.todo_list[data-id=${pad_id}]`).children('li:has("button")').before($li);
     });
   });
 
