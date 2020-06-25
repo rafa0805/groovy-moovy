@@ -1,8 +1,8 @@
 'use strict';
 $(function() {
 
-  $('#new_pad').on('click', function() {
-     $(this).addClass('active');
+  $('#new_pad').on('click', 'img', function() {
+     $(this).parent().addClass('active');
      $(this).children('input').addClass('active');
      $('#mask').addClass('show');
   });
@@ -17,13 +17,13 @@ $(function() {
     $('#mask').removeClass('show');
   });
 
-  $('#new_pad').on('click', function() {
-    if ($(this).children('input').val() !== "") {
+  $('#new_pad').on('click', 'img', function() {
+    if ($('#new_pad').children('input').val() !== "") {
       let user_id = $('#user').data('id');
-      let title = $(this).children('input').val();
+      let title = $('#new_pad').children('input').val();
       $('#new_pad').removeClass('active');
       $('#mask').removeClass('show');
-      $(this).children('input').val('');
+      $('#new_pad').children('input').val('');
 
       $.post('./app/ajax.php', {
         user_id: user_id,
@@ -32,10 +32,14 @@ $(function() {
         token: $('#token').val()
       }).done(function(res) {
         let $ul = $('ul.template').clone();
+        let $option = $('<option>').attr('value',res.id).text(res.title);
 
         $ul.removeClass('template').addClass('todo_list').attr('data-id', res.id);
         $ul.children('p').text(res.title);
         $ul.appendTo('#list_container').hide().fadeIn(200);
+
+        $option.appendTo('#abstract select');
+
       });
     } else {
       console.log('Heloooo');

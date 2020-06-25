@@ -6,6 +6,7 @@ html, body {
 body {
   position: fixed;
   font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
+  width: 100%;
   margin: 0;
   overflow-x: hidden;
 }
@@ -34,14 +35,15 @@ header {
   position: relative;
   height: 64px;
   background-color: #000;
-  font-size: 32px;
+  font-size: 24px;
+  font-weight: 700;
   color: #fff;
   text-align: center;
   line-height: 64px;
 }
 header img {
   vertical-align: -8px;
-  width: 48px;
+  width: 40px;
   height: auto;
 }
 header div {
@@ -262,10 +264,16 @@ header div {
   background-color: #eee;
 }
 
-#highlights > ul img {
+#highlights > ul li {
+  box-sizing: border-box;
   margin: 0 4px 4px 0;
-  width: auto;
-  height: 160px;
+  max-width: 120px;
+  width: 45%;
+  height: auto;
+}
+#highlights > ul img {
+  width: 100%;
+  height: auto;
 }
 
 #abstract {
