@@ -27,7 +27,7 @@ $weekly = $app->getMovies();
   <!--------------------- 共通部品 end ----------------------->
   
   <header>
-    <div id='user' class='' data-id='<?= h($_SESSION['me']['id']); ?>'>
+    <div id='user' class='d-none d-md-block' data-id='<?= h($_SESSION['me']['id']); ?>'>
       <img src='./img/user.png'> <?= h($_SESSION['me']['email']); ?>
     </div>
     Groovy-Moovy by Rafa  <img src='./img/film.png'>
@@ -62,8 +62,10 @@ $weekly = $app->getMovies();
                 <div class='del btn'><img src='./img/close.png'></div>
               </li>
             <?php endforeach; ?>
-            <li><input type='text' name='new_todo' placeholder='Add an awesome movie!!'></li>
-            <button class='post_new_todo btn bg-secondary text-light'>Add</button>
+            <li>
+              <input type='text' name='new_todo' placeholder='Add an awesome movie!!'>
+              <button class='post_new_todo btn bg-secondary text-light'>Add</button>
+            </li>
           </ul>
         <?php endforeach; ?>
               
@@ -73,8 +75,10 @@ $weekly = $app->getMovies();
         <ul class='template' data-id=''>
           <div class='pad_del btn'><img src='./img/trash.png'></div>
           <p></p>
-          <li><input type='text' name='new_todo' placeholder='create new item!'></li>
-          <button class='post_new_todo btn bg-secondary text-light'>Add</button>
+          <li>
+            <input type='text' name='new_todo' placeholder='create new item!'>
+            <button class='post_new_todo btn bg-secondary text-light'>Add</button>
+          </li>
         </ul>
         <!--------------------- 要素のテンプレート end ----------------------->
         
