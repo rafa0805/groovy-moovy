@@ -16,6 +16,7 @@
   </head>
   <body>
     <header>Sign up to GroovyMoovy</header>
+    <p class='readme'><a href='/readme.php'>Readme(使用技術の説明)</a></p>
     <div id='form_container'>
       <form action='' method='POST'>
         <p>UserID</p>

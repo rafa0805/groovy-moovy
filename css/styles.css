@@ -420,7 +420,16 @@ header div {
 }
 #form_container .error{
   color: #FA776D;
+}
 
+.readme {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 28px;
+  font-weight: bold;
+}
+.readme a {
+  color:#E85A70; 
 }
 
 @media screen and (max-width: 768px) and (min-width: 0px) {
