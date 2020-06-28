@@ -65,6 +65,10 @@ $(function() {
     let pad_id = $ul.data('id');
     let content = $ul.children('li:last').children('input').val();
     $ul.children('li:last').children('input').val('');
+
+    if (!validate('todo', content)) {
+      return;
+    }
     
     $.post('./app/ajax.php', {
       pad_id: pad_id,
@@ -169,6 +173,14 @@ $(function() {
       }
     }
   });
+
+  function validate(param, value) {
+    switch (param) {
+      case 'todo':
+        return value.match(/.+/);
+    }
+    
+  }
   
 });
 
