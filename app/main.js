@@ -136,7 +136,7 @@ $(function() {
     let pad_id = $('#abstract').find('select').val();
     let content = $('#abstract').find('.title').text();
     $('.add_to_list p').removeClass('d-none').fadeOut(700, function() {
-      $('.add_to_list p').addClass('d-none');
+      $('.add_to_list p').addClass('d-none').fadeIn(1);
     });
     
     $.post('./app/ajax.php', {
