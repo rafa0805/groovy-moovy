@@ -89,7 +89,7 @@ $weekly = $app->getMovies();
           <p>Some Hints for You!! (by The Movie Database API)</p>
           <ul>
             <?php foreach($weekly as $movie): ?>
-              <li><img src="<?= $movie['url']; ?>" class='poster btn' data-title="<?= $movie['title']; ?>" data-overview="<?= $movie['overview']; ?>" data-release="<?= $movie['release']; ?>" data-vote_count="<?= $movie['vote_count']; ?>"></li>
+              <li><img src="<?= h($movie['url']); ?>" class='poster btn' data-title="<?= h($movie['title']); ?>" data-overview="<?= h($movie['overview']); ?>" data-release="<?= h($movie['release']); ?>" data-vote_count="<?= h($movie['vote_count']); ?>"></li>
             <?php endforeach; ?>
           </ul>
         </div>
@@ -108,7 +108,7 @@ $weekly = $app->getMovies();
             <p>Select a To Watch List</p>
             <select>
               <?php foreach($datas as $pad): ?>
-                <option value='<?= $pad->id;?>'><?= $pad->title;?></option>
+                <option value='<?= h($pad->id);?>'><?= h($pad->title);?></option>
               <?php endforeach; ?>
             </select>
           </div>
@@ -123,7 +123,7 @@ $weekly = $app->getMovies();
     <!--------------------- モーダルウィドウ end ----------------------->
 
   </div>  
-  <input type='hidden' id='token' value='<?= $_SESSION['token']; ?>'>
+  <input type='hidden' id='token' value='<?= h($_SESSION['token']); ?>'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src='./app/main.js'></script>
 </body>

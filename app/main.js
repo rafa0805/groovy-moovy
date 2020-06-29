@@ -1,22 +1,16 @@
 'use strict';
 $(function() {
 
+// =================== リストに関するイベント ===================
+
+  // 新リスト作成のための入力欄をオープン
   $('#new_pad').on('click', 'img', function() {
      $(this).parent().addClass('active');
      $(this).children('input').addClass('active');
      $('#mask').addClass('show');
   });
 
-  $('#mask').on('click', function() {
-    if ($('#new_pad').hasClass('active')) {
-      $('#new_pad').removeClass('active');
-    }
-    if ($('#abstract').hasClass('show')) {
-      $('#abstract').removeClass('show');
-    }
-    $('#mask').removeClass('show');
-  });
-
+  // 新リストを作成
   $('#new_pad').on('click', 'img', function() {
     if ($('#new_pad').children('input').val() !== "") {
       let user_id = $('#user').data('id');
@@ -39,14 +33,13 @@ $(function() {
         $ul.appendTo('#list_container').hide().fadeIn(200);
 
         $option.appendTo('#abstract select');
-
       });
     } else {
       return;
     };
-    
   });
 
+  // 既存のリストを削除する
   $('#list_container').on('click', '.pad_del', function() {
     let $ul = $(this).parents('.todo_list');
     let pad_id = $ul.data('id');
@@ -60,6 +53,10 @@ $(function() {
     });
   });
 
+
+// =================== リスト内項目に関するイベント ===================
+
+  // リストに新しい項目を追加する
   $('#list_container').on('click', '.post_new_todo', function() {
     let $ul = $(this).parents('.todo_list');
     let pad_id = $ul.data('id');
@@ -83,6 +80,7 @@ $(function() {
     });
   });
 
+  // リストの既存項目を削除する
   $('#list_container').on('click', '.del', function() {
     let todo_id = $(this).parent().data('id');
     let $li = $(this).parent();
@@ -96,6 +94,7 @@ $(function() {
     });
   });
 
+  // 用済み項目のチェック動作
   $('#list_container').on('click', '.todo_list input[type=checkbox]', function() {
     let todo_id = $(this).parent().data('id');
     let $li = $(this).parent();
@@ -113,6 +112,9 @@ $(function() {
     });
   });
 
+// =================== リスト内項目に関するイベント ===================
+
+  // 映画サムネイルをクリックし、映画の詳細情報を開く動作
   $('#movie_container').on('click', '.poster', function() {
     let url = $(this).attr('src');
     let title = $(this).attr('data-title');
@@ -127,6 +129,7 @@ $(function() {
     $('#abstract').addClass('show');
   });
 
+  // 映画詳細を閉じる動作
   $('#abstract').on('click', '.exit', function() {
     $('#mask').removeClass('show');
     $('#abstract').find('.title').text('');
@@ -135,6 +138,7 @@ $(function() {
     $('#abstract').removeClass('show');
   });
 
+  // 映画詳細からToDoリストに映画タイトルを追加する動作
   $('#abstract').on('click', '.add_to_list', function() {
 
     let pad_id = $('#abstract').find('select').val();
@@ -156,6 +160,9 @@ $(function() {
     });
   });
 
+// =================== リスト内項目に関するイベント ===================
+
+  //APIで取得した映画一覧を表示 (モバイル画面の限定動作)
   $('#find-movie').on('click', function() {
     if (!$('#movie_container').hasClass('show')) {
       $('#movie_container').addClass('show');
@@ -163,7 +170,8 @@ $(function() {
       $('#movie_container').removeClass('show');
     }
   });
-
+  
+  //画面サイズが変化した際のレスポンシブル対応
   $(window).on('resize', function() {
     if ($(window).width() > 768) {
       if ($('#movie_container').hasClass('show')) {
@@ -174,6 +182,20 @@ $(function() {
     }
   });
 
+// =================== 共通の処理 ===================
+
+// マスクをクリックして、モーダルウィンドウ系を閉じる
+$('#mask').on('click', function() {
+  if ($('#new_pad').hasClass('active')) {
+    $('#new_pad').removeClass('active');
+  }
+  if ($('#abstract').hasClass('show')) {
+    $('#abstract').removeClass('show');
+  }
+  $('#mask').removeClass('show');
+});
+
+// 空欄入力の防止
   function validate(param, value) {
     switch (param) {
       case 'todo':

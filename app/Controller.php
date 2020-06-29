@@ -2,8 +2,6 @@
 
 namespace MyApp;
 
-use stdClass;
-
 class Controller
 {
   private $_values;
@@ -28,12 +26,15 @@ class Controller
   protected function setValues($key, $value) {
     $this->_values->$key = $value;
   }
+
   public function getValues($key) {
     return isset($this->_values->$key) ? $this->_values->$key : '';
   }
+
   protected function setErrors($key, $error) {
     $this->_errors->$key = $error;
   }
+
   public function getErrors($key) {
     return isset($this->_errors->$key) ? $this->_errors->$key : '';
   }
